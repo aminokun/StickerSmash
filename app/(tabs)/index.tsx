@@ -9,7 +9,6 @@ import { useState } from "react";
 const PlaceholderImage = require("@/assets/images/background-image.png");
 
 export default function Index() {
-  //WIP
   const [selectedImage, setSelectedImage] = useState<string | undefined>(
     undefined
   );
