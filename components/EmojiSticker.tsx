@@ -48,7 +48,7 @@ export default function EmojiSticker({ imageSize, stickerSource }: Props) {
       height: withSpring(scaleImage.value),
     };
   });
-
+  //wip
   return (
     <GestureDetector gesture={drag}>
       <Animated.View style={[containerStyle, { top: -230, left: 140 }]}>
