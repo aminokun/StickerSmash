@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { View } from "react-native";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { captureRef } from "react-native-view-shot";
 
 import { type ImageSource } from "expo-image";
 import * as ImagePicker from "expo-image-picker";
@@ -17,6 +18,7 @@ import EmojiSticker from "@/components/EmojiSticker";
 const PlaceholderImage = require("@/assets/images/background-image.png");
 
 export default function Index() {
+  const imageRef = useRef<View>(null);
   const [status, requestPermissions] = MediaLibrary.usePermissions();
   const [showAppOptions, setShowAppOptions] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
@@ -60,13 +62,27 @@ export default function Index() {
   };
 
   const onSaveImageAsync = async () => {
-    //wip
+    try {
+      const localUri = await captureRef(imageRef, {
+        height: 440,
+        quality: 1,
+      });
+
+      await MediaLibrary.saveToLibraryAsync(localUri);
+      if (localUri) {
+        alert("Saved 🤪!");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
-    <GestureHandlerRootView>
-      <View className="flex-1 items-center bg-[#25292e]">
-        <View className="flex-1 pt-[28px]">
+    <GestureHandlerRootView
+      style={{ alignItems: "center", flex: 1, backgroundColor: "#25292e"}}
+    >
+      <View style={{ flex: 1 }}>
+        <View ref={imageRef} collapsable={false}>
           <ImageViewer
             imgSource={PlaceholderImage}
             selectedImage={selectedImage}
