@@ -1,0 +1,10 @@
+{
+  "build": {
+    "local": {
+      "distribution": "internal",
+      "ios": {
+        "buildConfiguration": "Release"
+      }
+    }
+  }
+}
