@@ -3,7 +3,8 @@
 # dependencies
 node_modules/
 
-# build
+# builds
+android/
 ios/
 
 # Expo
