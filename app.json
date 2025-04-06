@@ -10,6 +10,7 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
+      "bundleIdentifier": "com.aminokum.StickerSmash",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
